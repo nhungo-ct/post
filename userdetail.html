@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>User detail </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div class="container-1">
+        <div class="banner-hero-holder" style="background-image: url(/img/tree.jpg); position: relative; z-index: 0; background-attachment: scroll; background-size: auto;background-repeat: unset;">
+            <div class="wrapper">
+                <div class="title-block-top">
+                    <a href="users.html">All User</a>
+                </div>
+
+                <div class="title-block-center">
+                    <span>My information</span>
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+    <div class="container-2 wrapper">
+      <!-- Create button -->
+      <div class="grid-menu-filter tab">
+        <button class="menu-filter-item information-btn btn active" onclick="showTab('information')">          
+            <span>Information</span>
+        </button>
+        <button class="menu-filter-item todo-btn btn" onclick="showTab('todo')">          
+            <span>To do</span>
+        </button>
+        <button class="menu-filter-item post-btn btn" onclick="showTab('post')">
+            <span>Post</span>
+        </button>
+        <button class="menu-filter-item btn" onclick="showTab('album')">
+            <span>Album</span>
+        </button>
+      </div>
+
+      <!-- Tab content -->
+      <div class="">
+        <div class="tabcontent tab-content-detail active" id="information"></div>
+        <ul  class="tabcontent" id="todo"></ul>
+        <ul class="tabcontent" id="post"></ul>
+        <div class="tabcontent " id="album"></div>
+      </div>
+    </div>
+
+    <script>
+    function getUserId() {
+        const searchParams = new URLSearchParams(window.location.search);
+        const userId = searchParams.get('user_id');
+        return userId;
+    }
+
+    // load user info tu user id
+    function getUserInfo(userId) {
+        return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`).then((response) => {
+            return response.json();
+        });
+    }
+
+    // load todo tu user id
+    function getUserTodo(userId) {
+        return fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`).then((response) => {
+            return response.json();
+        });
+    }
+
+    // load post tu user id
+    function getUserPost(userId) {
+        return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`).then((response) => {
+            return response.json();
+        });
+    }
+
+    // load album tu user id
+    function getUserAlbum(userId) {
+        return fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`).then((response) => {
+            return response.json();
+        });
+    }
+
+    // render user info block
+    function renderUserInfoBlock(userInfo) {
+        const infoDiv = document.getElementById('information');
+        infoDiv.innerHTML = `
+            <div class="info-block-style">
+                <div>
+                    <h3>Contact</h3>
+                    <p>User name: ${userInfo.username}</p>
+                    <p>Phone: ${userInfo.phone}</p>
+                    <p><a href="mailto:${userInfo.email}">Email: ${userInfo.email}</a></p>
+                    <p><a href="${userInfo.website}">Website: ${userInfo.website}</a></p>
+                </div>
+
+                <div>
+                    <h3>Address</h3>
+                    <p>Street: ${userInfo.address.street}</p>
+                    <p>Suit: ${userInfo.address.suit}</p>
+                    <p>City: ${userInfo.address.city}</p>   
+                    <p>Zipcode: ${userInfo.address.zipcode}</p>             
+                </div>
+
+                <div>
+                    <h3>Company</h3>
+                    <p>Name: ${userInfo.company.name}</p>
+                    <p>Catch Phrase: ${userInfo.company.catchPhrase}</p>
+                    <p>Bs: ${userInfo.company.bs}</p>
+                </div>
+            </div>
+        `
+    }
+
+    // render todo block
+    function renderTodoBlock(todos) {
+        const todoDiv = document.getElementById('todo');
+        for (let i=0; i < todos.length; i++) {
+            todoDiv.innerHTML += `
+                <li>    
+                    <a href="tododetail.html?todoId=${todos[i].id}">${todos[i].title}</a>
+                </li>
+            `;
+        }
+    }
+
+    // render post block
+    function renderPostBlock(posts) {
+        const postDiv = document.getElementById('post');
+        for (let i=0; i < posts.length; i++) {
+            postDiv.innerHTML += `
+                <li>
+                    <a href="comments.html?post_id=${posts[i].id}">${posts[i].title}</a>
+                </li>
+            `;
+        }
+    }
+
+    // render album block
+    function renderAlbumBlock(albums){
+        const albumDiv = document.getElementById('album');
+        for (let i=0; i < albums.length; i++) {
+            albumDiv.innerHTML += `
+                <li class="link-style">
+                    <a href="photos.html?album_id=${albums[i].id}">${albums[i].title}</a>
+                </li>
+            `;
+        }
+    }
+
+    // render data to html
+    function render(userInfo, todos, posts, albums) {
+        // render user info block
+        renderUserInfoBlock(userInfo);
+        // render todos block
+        renderTodoBlock(todos);
+        //render posts block
+        renderPostBlock(posts);
+        //render album block
+        renderAlbumBlock(albums);
+    }
+
+    //show tab 
+    function showTab(tabContentId) {
+        const listTabContents = document.getElementsByClassName('tabcontent');
+        for (let i = 0; i < listTabContents.length; i++) {
+          tabContent = listTabContents[i];
+          tabContent.style.display = 'none';
+        }
+        document.getElementById(tabContentId).style.display = 'block';
+    }
+
+    // ham thuc thi, chay luc load trang web len
+    async function run() {
+        const userId = getUserId();
+        const userInfo = await getUserInfo(userId);
+        const todos = await getUserTodo(userId);
+        const posts = await getUserPost(userId);
+        const albums = await getUserAlbum(userId);
+    // doi await chay xong moi chay dong nay
+        render(userInfo, todos, posts, albums);
+        showTab('information');
+    }
+    run();
+
+    </script>
+
+    </body>
+  <footer>
+    <div class="footer wrapper">
+      <p>Nhu</p>
+      <p>Copyright © 2017 Vinero. Powered by VLThemes</p>
+    </div>
+  </footer>
+</html>
+
+<!-- function myMap() {
+    var mapProp= {
+    center:new google.maps.LatLng(${user.geo.lat},${user.geo.lng}),
+    zoom:5,
+    };
+var map = new google.maps.Map(document.getElementById("information"),mapProp);
+}; -->

@@ -1,0 +1,255 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .banner-hero-holder{
+    padding-bottom: 100px;
+    min-height: 80vh;
+    background-color: #efefef;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    position: relative;
+    text-align: center;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  
+  .container-1{
+    background-color: #ececec;
+    position: relative;
+    z-index: 1;
+  }
+  .wrapper{
+    width: 1000px;
+    margin: auto;
+  }
+  
+  .title-block-left{
+    position: absolute;
+    top: 16px;
+    text-transform: uppercase;
+    color: #696969;
+    width: 1000px;
+  } 
+  
+  .title-block-left a{
+    text-decoration: none;
+    color: #000;
+  }
+  
+  
+  .title-block-center{
+    padding: 60px;
+    width: 312px;
+    height: 80px;
+    background-color: rgba(255,255,255,0.95);
+    position: absolute;
+    color: #696969;
+    top: 200px;
+  }
+  
+  .container-2{
+    background-color: rgba(255,255,255,0.95);
+  }
+  .user-item a{
+    text-decoration: none;
+    color: grey;
+  }
+  
+  .grid-menu-filter{
+  
+    text-align: center;
+    padding: 90px 0px;
+  }
+  
+  .grid-menu-filter .menu-filter-item {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 12px 8px 14px;
+    margin: 0 6px;
+    color: #333;
+    width: auto;
+  } 
+  user-detail tab menu
+  .tab .btn:hover,
+  .tab .btn:active {
+      color: #000;
+      background-color: #efefef;
+  
+  }
+  
+  
+  .tab .menu-filter-item.menu-filter-item-active {
+      background-color: #efefef;
+  }  
+  
+  
+  
+  .user-name-container{
+    width: 1000px;
+    flex-wrap: wrap;
+    margin: auto;
+    position: relative;
+  }
+  
+  .grid-list-style{
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .grid-list-style .user-item{
+    width: 300px;
+    height: 50px;
+    padding: 20px;
+    text-align: center;
+    line-height: 50px; 
+    border:  none solid grey;
+    margin: auto;
+    margin-top: 25px;
+    color: grey;
+  }
+  
+  .grid-menu-user{
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .grid-list .user-item a:hover,
+  .grid-list .user-item.user-item-active a{
+    color: #000;
+  }
+  
+  
+  .grid-list .user-item:hover,
+  .grid-list .user-item.user-item-active{
+    border: 1px solid #efefef;
+    transition: 0.3s;
+  }
+  
+  /* .tab-menu-filter{
+    overflow: hidden;
+  } */
+  .tab .btn{
+    border: none;
+    background-color: rgba(255,255,255,0.95);
+    color: #696969;
+  }
+  
+  .tab .btn:hover{
+    border: 1px solid #efefef;
+    background-color: #efefef;
+  }
+  
+  .tab .btn:active{
+    border: 1px solid #efefef;
+    background-color: #efefef;
+    color: #000;
+    transition: 0.3s;
+  }
+  
+  
+  .tabcontent{
+    padding: 0;
+    justify-content: space-between;
+    background-color:#ffff;
+    width: auto;
+    margin-bottom: 20px;
+    color: #696969; 
+  
+  }
+  
+  
+  #todo a{
+    text-decoration: none;
+    text-transform: capitalize;
+    width: auto;
+    margin-bottom: 20px;
+    color: #696969; 
+  }
+  
+  #todo {
+    margin: 10px 0px;
+  }
+  #information a{
+    text-decoration: none;
+    color: #696969; 
+  }
+  
+  #post a{
+    text-decoration: none;
+    text-transform: capitalize;
+    width: auto;
+    margin-bottom: 20px;
+    color: #696969; 
+  }
+  
+  #post {
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  
+  .tab-content-detail{
+    width: calc(1000px/2);
+    background-color: #F5F5F5;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+    line-height: auto;
+  }
+  
+  .tab-content-detail h3{
+    text-align: center;
+  }
+  .tab-content-detail p{
+    margin-left: 20px;
+  }
+  
+  .tabcontent {
+        display: none;
+      }
+  
+  .progress-100 {
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    background-color: green;
+    color: #000;
+    position: absolute;
+  }
+  
+  .footer{
+    margin-top: 25px;
+    opacity: 20%;
+    font-weight: bold;
+  }
+  
+  
+  

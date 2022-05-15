@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Final Exam All</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./css/style.css">
+	</head>
+	<body>
+        
+        <div class="container-1">
+            <div class="banner-hero-holder" style="background-image: url(/img/index.jpg); position: relative; z-index: 0; background-attachment: scroll; background-size: auto;">
+                <div class="wrapper">
+                    <div class="title-block-top">
+                        <a href="users.html">All User</a>
+                    </div>
+    
+                    <div class="title-block-center">
+                        <p>Here are 10 users...</p>
+                    </div> 
+                </div> 
+            </div>
+        </div>
+        
+        <div class="container-2 wrapper">
+            <div class="grid-list grid-list-style" id="username">
+                
+            </div>
+        </div> 
+<script>
+    // lay all user tu link ra json
+    function getUser() {
+        return fetch(`https://jsonplaceholder.typicode.com/users`).then((response) => {
+          return response.json();
+        });
+    }
+
+    // render user to block
+    function renderUserBlock(allUser) {
+        const infoDiv = document.getElementById('username');
+        for (let i=0; i < allUser.length; i++) {
+            infoDiv.innerHTML += `
+                <div class="user-item">
+                    <a href="userdetail.html?user_id=${allUser[i].id}">${allUser[i].name}</a>
+                </div>
+            `;
+        }   
+    }
+    // render data to html
+    function render(allUser) {
+        renderUserBlock(allUser);
+        console.log(allUser);
+
+    }
+
+    // lay cac user trong file json
+    async function run() {
+        const users = await getUser();
+    render(users);
+    } 
+    run();
+</script>
+
+</body>
+<footer>
+    <div class="footer wrapper">
+        <p>Nhu-Final-JS</p>
+        <p>Copyright © 2017 Vinero. Powered by VLThemes</p>
+    </div>
+</footer>
+</html>
